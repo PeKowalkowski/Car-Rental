@@ -18,12 +18,14 @@ public class Branch {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "branch_id")
+    private Address address;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "carRental_id")
+    @JoinColumn(name = "branch_id")
     private List<Employee> employeeList;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "carRental_id")
+    @JoinColumn(name = "branch_id")
     private List<Car> carList;
 
 
