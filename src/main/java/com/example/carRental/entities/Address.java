@@ -17,6 +17,15 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String city;
+    private String street;
     private String zipCode;
     private String Country;
+
+    public Address(String city, String street, String zipCode, String country) {
+        this.city = city;
+        this.street = street;
+        this.zipCode = zipCode;
+        Country = country;
+    }
+
 }

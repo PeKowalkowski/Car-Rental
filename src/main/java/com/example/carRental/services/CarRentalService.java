@@ -11,7 +11,7 @@ public interface CarRentalService {
 
     List<CarRentalDto> getCarRentals();
 
-    Optional<CarRental> findById(Long id);
+    CarRental findById(Long id);
 
     void deleteCarRental(Long id);
 

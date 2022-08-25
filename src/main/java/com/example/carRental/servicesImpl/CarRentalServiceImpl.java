@@ -1,7 +1,9 @@
 package com.example.carRental.servicesImpl;
 
 import com.example.carRental.dtos.CarRentalDto;
+import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.CarRental;
+import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRentalRepository;
 import com.example.carRental.services.CarRentalService;
 import org.modelmapper.ModelMapper;
@@ -18,6 +20,8 @@ public class CarRentalServiceImpl implements CarRentalService {
     @Autowired
     private CarRentalRepository carRentalRepository;
 
+    @Autowired
+    private BranchRepository branchRepository;
 
     private static ModelMapper modelMapper;
 
@@ -37,21 +41,23 @@ public class CarRentalServiceImpl implements CarRentalService {
         List<CarRentalDto> carRentalDtoList = carRentalRepository.findAll().stream()
                 .map(carRental -> {
                     CarRentalDto carRentalDto = new CarRentalDto(carRental.getId(), carRental.getName(),
-                            carRental.getWebsite(), carRental.getPhoneNumber(), carRental.getOwner());
+                            carRental.getWebsite(), carRental.getPhoneNumber(), carRental.getOwner(), carRental.getBranchList());
                     return carRentalDto;
                 })
                 .collect(Collectors.toList());
         return carRentalDtoList;
     }
 
-    public Optional<CarRental> findById(Long id) {
-        Optional<CarRental> carRental = carRentalRepository.findById(id);
+    public CarRental findById(Long id) {
+        CarRental carRental = carRentalRepository.getCarRentalsById(id);
         return carRental;
     }
+
 
     @Override
     public void deleteCarRental(Long id) {
         carRentalRepository.deleteById(id);
+
     }
 
 
@@ -79,7 +85,7 @@ public class CarRentalServiceImpl implements CarRentalService {
     @Override
     public CarRental mapperToCarRental(CarRentalDto carRentalDto) {
         return new CarRental(carRentalDto.getName(), carRentalDto.getWebsite(), carRentalDto.getPhoneNumber(),
-                carRentalDto.getOwner());
+                carRentalDto.getOwner(), carRentalDto.getBranchList());
     }
 
     @Override

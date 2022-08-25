@@ -1,4 +1,4 @@
-package com.example.carRental.entities;
+package com.example.carRental.dtos;
 
 import com.example.carRental.enums.CarBodyType;
 import com.example.carRental.enums.Status;
@@ -6,18 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.List;
 
-@Entity
-@Table(name = "cars")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Car {
+@AllArgsConstructor
+public class CarDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String brand;
     private String model;
@@ -25,8 +22,6 @@ public class Car {
     private String color;
     private String mileage;
     private Long price;
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Branch branch;
     @Enumerated(EnumType.STRING)
     private CarBodyType carBodyType;
     @Enumerated(EnumType.STRING)
