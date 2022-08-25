@@ -2,24 +2,34 @@ package com.example.carRental.controllers;
 
 import com.example.carRental.dtos.CarRentalDto;
 import com.example.carRental.entities.CarRental;
+import com.example.carRental.repositories.BranchRepository;
+import com.example.carRental.repositories.CarRentalRepository;
+import com.example.carRental.servicesImpl.BranchServiceImpl;
 import com.example.carRental.servicesImpl.CarRentalServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/car_rentals")
 public class CarRentalController {
 
-    @Autowired
     private CarRentalServiceImpl carRentalServiceImpl;
 
-    public CarRentalController(CarRentalServiceImpl carRentalServiceImpl) {
+    private BranchServiceImpl branchServiceImpl;
+
+    private CarRentalRepository carRentalRepository;
+
+    private BranchRepository branchRepository;
+
+    public CarRentalController(CarRentalServiceImpl carRentalServiceImpl, BranchServiceImpl branchServiceImpl, CarRentalRepository carRentalRepository, BranchRepository branchRepository) {
         this.carRentalServiceImpl = carRentalServiceImpl;
+
+        this.branchServiceImpl = branchServiceImpl;
+        this.carRentalRepository = carRentalRepository;
+        this.branchRepository = branchRepository;
     }
 
     @PostMapping
@@ -35,10 +45,13 @@ public class CarRentalController {
         /*return ResponseEntity.ok(carRentalServiceImpl.getCarRentals());*/
     }
     @GetMapping("/{id}")
-    ResponseEntity<Optional<CarRental>> findById(@PathVariable Long id){
-    Optional<CarRental> carRentalDto = carRentalServiceImpl.findById(id);
-    return ResponseEntity.ok(carRentalDto);
+    ResponseEntity<CarRental> findById(@PathVariable Long id){
+    CarRental carRental = carRentalServiceImpl.findById(id);
+    return ResponseEntity.ok(carRental);
     }
+
+
+
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteCarRentalById(@PathVariable Long id){
         carRentalServiceImpl.deleteCarRental(id);
@@ -49,4 +62,5 @@ public class CarRentalController {
     carRentalServiceImpl.updateCarRentalById(id, carRentalDto);
     return ResponseEntity.noContent().build();
     }
+
 }
