@@ -25,4 +25,21 @@ public class Employee {
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
 
+    public Employee(String login, String firstname, String lastname, String role, String password, Branch branch) {
+        this.login = login;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+        this.password = password;
+        this.branch = branch;
+    }
+
+    public Employee(Long id, String login, String firstname, String lastname, String role, String password) {
+        this.id = id;
+        this.login = login;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+        this.password = password;
+    }
 }

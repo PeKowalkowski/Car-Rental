@@ -27,9 +27,6 @@ public class Branch {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "car_rental_id", referencedColumnName = "id")
     private CarRental carRental;
-
-    /*@OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "branch_id")*/
     @JsonIgnore
     @OneToMany(mappedBy = "branch")
     private List<Employee> employeeList;

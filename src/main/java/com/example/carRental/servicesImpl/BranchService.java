@@ -1,10 +1,7 @@
 package com.example.carRental.servicesImpl;
 
 import com.example.carRental.dtos.BranchDto;
-import com.example.carRental.dtos.CarRentalDto;
-import com.example.carRental.entities.Address;
 import com.example.carRental.entities.Branch;
-import com.example.carRental.entities.CarRental;
 import com.example.carRental.repositories.BranchRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class BranchServiceImpl /*implements DefaultService<Branch>*/ {
+public class BranchService {
 
     @Autowired
     private BranchRepository branchRepository;
@@ -62,4 +59,5 @@ public class BranchServiceImpl /*implements DefaultService<Branch>*/ {
         Branch branch = new Branch(id, branchDto.getName());
         branchRepository.save(branch);
     }
+
 }

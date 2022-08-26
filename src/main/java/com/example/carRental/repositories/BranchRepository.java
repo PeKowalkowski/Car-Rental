@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Long> {
 
-    /*@Query(value = "SELECT * FROM branches as b WHERE b.id=?1", nativeQuery = true)
-    Branch getById(Long id);*/
+
 }
