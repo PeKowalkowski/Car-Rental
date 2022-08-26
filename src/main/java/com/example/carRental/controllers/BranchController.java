@@ -1,15 +1,11 @@
 package com.example.carRental.controllers;
 
 import com.example.carRental.dtos.BranchDto;
-import com.example.carRental.dtos.CarRentalDto;
-import com.example.carRental.entities.Address;
 import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.CarRental;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRentalRepository;
-import com.example.carRental.servicesImpl.AddressService;
-import com.example.carRental.servicesImpl.BranchServiceImpl;
-import com.example.carRental.servicesImpl.CarRentalServiceImpl;
+import com.example.carRental.servicesImpl.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +20,7 @@ public class BranchController {
 
 
     @Autowired
-    private BranchServiceImpl branchService;
+    private BranchService branchService;
 
     @Autowired
     private CarRentalRepository carRentalRepository;
@@ -32,7 +28,7 @@ public class BranchController {
     @Autowired
     private BranchRepository branchRepository;
 
-    public BranchController(BranchServiceImpl branchService, CarRentalRepository carRentalRepository,
+    public BranchController(BranchService branchService, CarRentalRepository carRentalRepository,
                             BranchRepository branchRepository) {
         this.branchService = branchService;
         this.carRentalRepository = carRentalRepository;

@@ -4,13 +4,14 @@ import com.example.carRental.dtos.CarRentalDto;
 import com.example.carRental.entities.CarRental;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRentalRepository;
-import com.example.carRental.servicesImpl.BranchServiceImpl;
+import com.example.carRental.servicesImpl.BranchService;
 import com.example.carRental.servicesImpl.CarRentalServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/car_rentals")
@@ -18,13 +19,13 @@ public class CarRentalController {
 
     private CarRentalServiceImpl carRentalServiceImpl;
 
-    private BranchServiceImpl branchServiceImpl;
+    private BranchService branchServiceImpl;
 
     private CarRentalRepository carRentalRepository;
 
     private BranchRepository branchRepository;
 
-    public CarRentalController(CarRentalServiceImpl carRentalServiceImpl, BranchServiceImpl branchServiceImpl, CarRentalRepository carRentalRepository, BranchRepository branchRepository) {
+    public CarRentalController(CarRentalServiceImpl carRentalServiceImpl, BranchService branchServiceImpl, CarRentalRepository carRentalRepository, BranchRepository branchRepository) {
         this.carRentalServiceImpl = carRentalServiceImpl;
 
         this.branchServiceImpl = branchServiceImpl;
@@ -45,11 +46,11 @@ public class CarRentalController {
         /*return ResponseEntity.ok(carRentalServiceImpl.getCarRentals());*/
     }
     @GetMapping("/{id}")
-    ResponseEntity<CarRental> findById(@PathVariable Long id){
-    CarRental carRental = carRentalServiceImpl.findById(id);
+    ResponseEntity<Optional<CarRental>> findById(@PathVariable Long id){
+    Optional<CarRental> carRental = carRentalServiceImpl.findById(id);
+
     return ResponseEntity.ok(carRental);
     }
-
 
 
     @DeleteMapping("/{id}")

@@ -47,9 +47,9 @@ public class CarRentalServiceImpl implements CarRentalService {
                 .collect(Collectors.toList());
         return carRentalDtoList;
     }
-
-    public CarRental findById(Long id) {
-        CarRental carRental = carRentalRepository.getCarRentalsById(id);
+    
+    public Optional<CarRental> findById(Long id) {
+        Optional<CarRental> carRental = carRentalRepository.findById(id);
         return carRental;
     }
 
@@ -94,6 +94,5 @@ public class CarRentalServiceImpl implements CarRentalService {
                 .map(carRental -> mapCarRentalToCarRentalDto(carRental))
                 .collect(Collectors.toList());
     }
-
 
 }
