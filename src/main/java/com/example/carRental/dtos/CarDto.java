@@ -1,5 +1,6 @@
 package com.example.carRental.dtos;
 
+import com.example.carRental.entities.Branch;
 import com.example.carRental.enums.CarBodyType;
 import com.example.carRental.enums.Status;
 import lombok.AllArgsConstructor;
@@ -26,4 +27,5 @@ public class CarDto {
     private CarBodyType carBodyType;
     @Enumerated(EnumType.STRING)
     private Status status;
+    private Branch branch;
 }

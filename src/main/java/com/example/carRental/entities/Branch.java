@@ -1,6 +1,7 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.dtos.CarDto;
+import com.example.carRental.dtos.EmployeeDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,10 +29,10 @@ public class Branch {
     @JoinColumn(name = "car_rental_id", referencedColumnName = "id")
     private CarRental carRental;
     @JsonIgnore
-    @OneToMany(mappedBy = "branch")
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.REMOVE)
     private List<Employee> employeeList;
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "branch_id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.REMOVE)
     private List<Car> carList;
 
     public Branch(String name) {
@@ -47,6 +48,8 @@ public class Branch {
     this.name = name;
         this.carList =carList;
 }
+
+
 
     public void setCarRental(CarRental carRental) {
         this.carRental = carRental;
