@@ -25,10 +25,24 @@ public class Car {
     private String color;
     private String mileage;
     private Long price;
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    private Branch branch;
     @Enumerated(EnumType.STRING)
     private CarBodyType carBodyType;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    private Branch branch;
+
+    public Car(String brand, String model, String year,
+               String color, String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+        this.mileage = mileage;
+        this.price = price;
+        this.carBodyType = carBodyType;
+        this.status = status;
+        this.branch = branch;
+    }
 }
