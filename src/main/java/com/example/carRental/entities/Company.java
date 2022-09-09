@@ -7,9 +7,10 @@ import org.hibernate.annotations.Tables;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "comanies")
+@Table(name = "comanies", uniqueConstraints = @UniqueConstraint(columnNames = "nip"))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
