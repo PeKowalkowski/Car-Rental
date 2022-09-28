@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "persons")
+@Table(name = "persons", uniqueConstraints = @UniqueConstraint(columnNames = "pesel"))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +30,7 @@ public class EmployeeService {
         List<EmployeeDto> employeeDtoListList = employeeRepository.findAll().stream()
                 .map(employee -> {
                     EmployeeDto employeeDto = new EmployeeDto(employee.getId(), employee.getLogin(), employee.getFirstname(),
-                            employee.getLastname(), employee.getRole(), employee.getPassword(), employee.getBranch());
+                            employee.getLastname(), employee.getAuthority(), employee.getPassword(), employee.getBranch());
                     return employeeDto;
                 })
                 .collect(Collectors.toList());
@@ -43,7 +44,7 @@ public class EmployeeService {
 
     private Employee mapperToEmployee(EmployeeDto employeeDto) {
         Employee employee = new Employee(employeeDto.getLogin(), employeeDto.getFirstname(), employeeDto.getLastname(),
-                employeeDto.getRole(), employeeDto.getPassword(), employeeDto.getBranch());
+                employeeDto.getAuthority(), employeeDto.getPassword(), employeeDto.getBranch());
         return employee;
     }
 
@@ -59,7 +60,7 @@ public class EmployeeService {
 
     public void updateEmployee(Long id, EmployeeDto employeeDto) {
         Employee employee = new Employee(id, employeeDto.getLogin(), employeeDto.getFirstname(), employeeDto.getLastname(),
-                employeeDto.getRole(), employeeDto.getPassword());
+                employeeDto.getAuthority(), employeeDto.getPassword(), employeeDto.getBranch());
         employeeRepository.save(employee);
     }
 }

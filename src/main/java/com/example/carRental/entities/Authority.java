@@ -17,4 +17,12 @@ public class Authority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String authority;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Employee employee;
+
+
+
+
 }
