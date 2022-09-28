@@ -28,6 +28,7 @@ public class EmployeeController {
     @Autowired
     private BranchRepository branchRepository;
 
+
     public EmployeeController(EmployeeService employeeService, EmployeeRepository employeeRepository,
                               BranchRepository branchRepository) {
         this.employeeService = employeeService;

@@ -3,6 +3,7 @@ package com.example.carRental.controllers;
 import com.example.carRental.dtos.EmployeeDto;
 import com.example.carRental.entities.Employee;
 import com.example.carRental.repositories.EmployeeRepository;
+import com.example.carRental.servicesImpl.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +21,15 @@ public class RegistrationController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private RegistrationService registrationService;
+
 
     @PostMapping
     public Employee register(@RequestBody EmployeeDto employeeDto){
-        Employee employee = new Employee();
-        employee.setLogin(employeeDto.getLogin());
-        employee.setPassword(bCryptPasswordEncoder.encode(employeeDto.getPassword()));
-        employee.setAuthority(employeeDto.getAuthority());
-        return employeeRepository.save(employee);
+       Employee employee = registrationService.register(employeeDto);
+       return employee;
+
     }
 
 }

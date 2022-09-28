@@ -1,5 +1,6 @@
 package com.example.carRental.servicesImpl;
 
+
 import com.example.carRental.dtos.BranchDto;
 import com.example.carRental.entities.Branch;
 import com.example.carRental.repositories.BranchRepository;
@@ -50,6 +51,7 @@ public class BranchService {
         Optional<Branch> branch = branchRepository.findById(id);
         return branch;
     }
+
 
     public void deleteBranch(Long id) {
         branchRepository.deleteById(id);

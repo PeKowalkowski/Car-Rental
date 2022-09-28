@@ -14,8 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -30,18 +29,26 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String login = authentication.getName();
         String password = authentication.getCredentials().toString();
-
         Employee employee = employeeRepository.findByLogin(login).orElseThrow(() ->
                 new UsernameNotFoundException("Employee not found"));
 
         if(passwordEncoder.matches(password, employee.getPassword())){
             List<GrantedAuthority> authorityList = new ArrayList<>();
+
             authorityList.add(new SimpleGrantedAuthority(employee.getAuthority().getAuthority()));
             return new UsernamePasswordAuthenticationToken(login, password, authorityList);
         }else {
             throw new BadCredentialsException("Invalid Credentials");
         }
     }
+
+    /*private Set<SimpleGrantedAuthority> getAuthorities(Set<Authority> authority) {
+        Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
+        for(Authority auth : authority){
+            grantedAuthorities.add(new SimpleGrantedAuthority(auth.getAuthority()));
+        }
+        return grantedAuthorities;
+    }*/
 
     @Override
     public boolean supports(Class<?> authentication) {

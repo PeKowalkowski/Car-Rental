@@ -9,6 +9,7 @@ import com.example.carRental.servicesImpl.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class CarController {
         CarDto carDto1 = carService.addCar(carDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(carDto1);
     }
+
     @GetMapping()
     public ResponseEntity<List<CarDto>> getCars(){
         List<CarDto> carDtoList = carService.getCars();
