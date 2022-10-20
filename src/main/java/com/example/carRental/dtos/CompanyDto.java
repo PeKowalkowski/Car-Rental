@@ -1,31 +1,22 @@
 package com.example.carRental.dtos;
 
-import com.example.carRental.entities.Authority;
-import com.example.carRental.entities.Branch;
 import com.example.carRental.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Collection;
-import java.util.Set;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDto {
+public class CompanyDto {
+
 
     private Long id;
+    private String login;
+    private String name;
+    private String nip;
     private String firstname;
     private String lastname;
-    private String login;
     private String password;
-    private Branch branch;
     private Role role;
-
-
-    public Role getRole(Role employee) {
-        Role role = Role.EMPLOYEE;
-        return role;
-    }
 }

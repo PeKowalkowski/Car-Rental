@@ -1,7 +1,16 @@
 package com.example.carRental.controllers;
 
+import com.example.carRental.dtos.CompanyDto;
 import com.example.carRental.dtos.EmployeeDto;
+/*
+import com.example.carRental.dtos.PersonDto;
+*/
+import com.example.carRental.dtos.PersonDto;
+import com.example.carRental.dtos.UserDto;
+import com.example.carRental.entities.Company;
 import com.example.carRental.entities.Employee;
+import com.example.carRental.entities.Person;
+import com.example.carRental.entities.User;
 import com.example.carRental.repositories.EmployeeRepository;
 import com.example.carRental.servicesImpl.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +30,28 @@ public class RegistrationController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+
     @Autowired
     private RegistrationService registrationService;
 
 
     @PostMapping
-    public Employee register(@RequestBody EmployeeDto employeeDto){
-       Employee employee = registrationService.register(employeeDto);
-       return employee;
+    public String register(@RequestBody UserDto userDto){
+        return registrationService.register(userDto);
 
     }
+    @PostMapping("/registerPerson")
+    public Person registerPerson(@RequestBody PersonDto personDto){
+        return registrationService.registerPerson(personDto);
+    }
 
+    @PostMapping("/registerEmployee")
+    public Employee registerEmployee(@RequestBody EmployeeDto employeeDto){
+        return registrationService.registerEmployee(employeeDto);
+    }
+
+    @PostMapping("/registerCompany")
+    public Company registerCompany(@RequestBody CompanyDto companyDto){
+        return registrationService.registerComapny(companyDto);
+    }
 }

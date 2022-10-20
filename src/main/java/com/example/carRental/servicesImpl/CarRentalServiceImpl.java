@@ -1,7 +1,6 @@
 package com.example.carRental.servicesImpl;
 
 import com.example.carRental.dtos.CarRentalDto;
-import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.CarRental;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRentalRepository;
@@ -29,12 +28,20 @@ public class CarRentalServiceImpl implements CarRentalService {
         this.carRentalRepository = carRentalRepository;
     }
 
-    @Override
+  @Override
     public CarRentalDto addCarRental(CarRentalDto carRentalDto) {
         CarRental carRental = mapperToCarRental(carRentalDto);
         CarRental carRentalOut = carRentalRepository.save(carRental);
         return mapCarRentalToCarRentalDto(carRentalOut);
     }
+
+   /* public CarRental addCarRental(CarRentalDto carRentalDto){
+        CarRental carRental = new CarRental(carRentalDto.getId(), carRentalDto.getName(), carRentalDto.getWebsite(),
+                carRentalDto.getPhoneNumber(), carRentalDto.getOwner(), carRentalDto.getBranchList());
+        return carRentalRepository.save(carRental);
+    }*/
+
+
 
     @Override
     public List<CarRentalDto> getCarRentals() {

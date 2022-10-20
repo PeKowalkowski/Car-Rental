@@ -50,7 +50,6 @@ public class Branch {
 }
 
 
-
     public void setCarRental(CarRental carRental) {
         this.carRental = carRental;
     }

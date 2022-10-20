@@ -18,10 +18,13 @@ public class Authority {
     private Long id;
     private String authority;
 
+    /*@OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;*/
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private Employee employee;
-
 
 
 

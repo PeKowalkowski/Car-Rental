@@ -1,5 +1,6 @@
 package com.example.carRental.configs;
 
+import com.example.carRental.servicesImpl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebConfiguration extends WebSecurityConfigurerAdapter {
 
 
+    /*@Autowired
+    private CustomAuthenticationProvider customAuthenticationProvider;*/
+
     @Autowired
-    private CustomAuthenticationProvider customAuthenticationProvider;
+    private UserService userService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -34,9 +38,12 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/registration/**", "/api/login/**").permitAll()
-                .antMatchers("/api/cars/**").hasAuthority("READ")
-                .antMatchers("/api/branches/**").hasAuthority("WRITE")
-                .antMatchers("/api/employees/**").hasAuthority("WRITE")
+                .antMatchers("/api/cars/**").hasAuthority("USER")
+                .antMatchers("/api/branches/**").hasAuthority("EMPLOYEE")
+                .antMatchers("/api/employees/**").hasAuthority("USER")
+                .antMatchers("/api/users/**").hasAuthority("USER")
+                .antMatchers("/api/persons/**").hasAuthority("ADMIN")
+                .antMatchers("/api/companies/**").hasAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -44,7 +51,7 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-    @Override
+    /*@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(customAuthenticationProvider);
     }
@@ -53,6 +60,18 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
             return super.authenticationManagerBean();
+    }*/
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setPasswordEncoder(passwordEncoder());
+        provider.setUserDetailsService(userService);
+        return provider;
+    }
 }
