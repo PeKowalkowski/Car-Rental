@@ -37,8 +37,8 @@ public class BranchController {
     }
 
     @PostMapping
-    ResponseEntity<BranchDto> addBranch(@RequestBody BranchDto branchDto){
-        BranchDto branchDto1 = branchService.addBranch(branchDto);
+    ResponseEntity<Branch> addBranch(@RequestBody BranchDto branchDto){
+        Branch branchDto1 = branchService.addBranch(branchDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(branchDto1);
 
     }

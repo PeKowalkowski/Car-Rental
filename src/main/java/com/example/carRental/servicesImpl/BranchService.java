@@ -22,10 +22,16 @@ public class BranchService {
 
 
 
-    public BranchDto addBranch(BranchDto branchDto) {
+    /*public BranchDto addBranch(BranchDto branchDto) {
         Branch branch = mapperToBranch(branchDto);
         Branch branchOut = branchRepository.save(branch);
         return mapBranchToBranchDto(branchOut);
+    }*/
+    public Branch addBranch(BranchDto branchDto){
+        Branch branch = new Branch(branchDto.getId(), branchDto.getName(), branchDto.getCarRental(),
+                branchDto.getEmployeeDtoList(), branchDto.getCarDtoList());
+
+        return branchRepository.save(branch);
     }
 
     private BranchDto mapBranchToBranchDto(Branch branch) {
@@ -33,9 +39,9 @@ public class BranchService {
         return branchDto;
     }
 
-    private Branch mapperToBranch(BranchDto branchDto) {
+   /* private Branch mapperToBranch(BranchDto branchDto) {
         return new Branch(branchDto.getName(), branchDto.getCarDtoList());
-    }
+    }*/
 
     public List<BranchDto> getBranches() {
         List<BranchDto> branchDtoList = branchRepository.findAll()

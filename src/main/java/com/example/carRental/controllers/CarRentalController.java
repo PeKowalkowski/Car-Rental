@@ -39,6 +39,9 @@ public class CarRentalController {
         return ResponseEntity.status(HttpStatus.CREATED).body(carRentalDto1);
     }
 
+
+
+
     @GetMapping
     ResponseEntity<List<CarRentalDto>> getCarRentals(){
         List<CarRentalDto> carRentalDtoList = carRentalServiceImpl.getCarRentals();
