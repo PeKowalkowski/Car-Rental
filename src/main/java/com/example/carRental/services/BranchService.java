@@ -1,10 +1,10 @@
-package com.example.carRental.servicesImpl;
+package com.example.carRental.services;
 
 
 import com.example.carRental.dtos.BranchDto;
 import com.example.carRental.entities.Branch;
+import com.example.carRental.mappers.BranchMapperImpl;
 import com.example.carRental.repositories.BranchRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,30 +18,17 @@ public class BranchService {
     @Autowired
     private BranchRepository branchRepository;
 
-    private static ModelMapper modelMapper;
+    @Autowired
+    private BranchMapperImpl branchMapper;
 
 
 
-    /*public BranchDto addBranch(BranchDto branchDto) {
-        Branch branch = mapperToBranch(branchDto);
+    public BranchDto addBranch(BranchDto branchDto) {
+        Branch branch = branchMapper.mapperDtoToEntity(branchDto);
         Branch branchOut = branchRepository.save(branch);
-        return mapBranchToBranchDto(branchOut);
-    }*/
-    public Branch addBranch(BranchDto branchDto){
-        Branch branch = new Branch(branchDto.getId(), branchDto.getName(), branchDto.getCarRental(),
-                branchDto.getEmployeeDtoList(), branchDto.getCarDtoList());
-
-        return branchRepository.save(branch);
+        return branchMapper.mapperEntityToDto(branchOut);
     }
 
-    private BranchDto mapBranchToBranchDto(Branch branch) {
-        BranchDto branchDto = modelMapper.map(branch, BranchDto.class);
-        return branchDto;
-    }
-
-   /* private Branch mapperToBranch(BranchDto branchDto) {
-        return new Branch(branchDto.getName(), branchDto.getCarDtoList());
-    }*/
 
     public List<BranchDto> getBranches() {
         List<BranchDto> branchDtoList = branchRepository.findAll()

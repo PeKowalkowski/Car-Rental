@@ -1,9 +1,8 @@
 
 package com.example.carRental.controllers;
 
-import com.example.carRental.dtos.EmployeeDto;
 import com.example.carRental.dtos.UserDto;
-import com.example.carRental.servicesImpl.UserService;
+import com.example.carRental.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

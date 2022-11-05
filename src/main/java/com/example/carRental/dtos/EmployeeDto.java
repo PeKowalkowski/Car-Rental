@@ -1,6 +1,9 @@
 package com.example.carRental.dtos;
 
+/*
 import com.example.carRental.entities.Authority;
+*/
+import com.example.carRental.entities.Address;
 import com.example.carRental.entities.Branch;
 import com.example.carRental.enums.Role;
 import lombok.AllArgsConstructor;
@@ -21,11 +24,7 @@ public class EmployeeDto {
     private String login;
     private String password;
     private Branch branch;
+    private Address address;
     private Role role;
 
-
-    public Role getRole(Role employee) {
-        Role role = Role.EMPLOYEE;
-        return role;
-    }
 }

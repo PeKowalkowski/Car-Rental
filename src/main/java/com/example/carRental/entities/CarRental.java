@@ -1,7 +1,9 @@
 package com.example.carRental.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "car_rentals")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CarRental {
 
     @Id
@@ -20,7 +24,7 @@ public class CarRental {
     private String owner;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "carRental", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "carRental", cascade = CascadeType.ALL)
     private List<Branch> branchList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -30,8 +34,6 @@ public class CarRental {
     @JoinColumn(name = "carRental_id")
     private List<Employee> employeeList;
 
-    public CarRental() {
-    }
 
     public CarRental(Long id, String name, String website, String phoneNumber, String owner) {
         this.id = id;
@@ -69,16 +71,4 @@ public class CarRental {
         this.branchList = branchList;
     }
 
-    public void setBranchList(List<Branch> branchList) {
-        this.branchList = branchList;
-    }
-
-    public CarRental(Long id, String name, String website, String phoneNumber, String owner, List<Branch> branchList) {
-        this.id = id;
-        this.name = name;
-        this.website = website;
-        this.phoneNumber = phoneNumber;
-        this.owner = owner;
-        this.branchList = branchList;
-    }
 }

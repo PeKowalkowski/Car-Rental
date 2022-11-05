@@ -34,7 +34,18 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
+    public User(Long id, String firstname, String lastname, String login, String password, Role role, Address address) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.address = address;
+    }
 
     public User(String firstname, String lastname, String login, String password, Role role) {
         this.firstname = firstname;
@@ -42,6 +53,15 @@ public class User implements UserDetails {
         this.login = login;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String firstname, String lastname, String login, String password, Role role, Address address) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.address = address;
     }
 
     public User(Long id, String firstname, String lastname, String login, String password, Role role) {

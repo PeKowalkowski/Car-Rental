@@ -34,10 +34,10 @@ public class Person extends User{
 
 
 
-    public Person(String firstname, String lastname, String login, String password, String pesel, Role role) {
+   /* public Person(String firstname, String lastname, String login, String password, String pesel, Role role) {
         super(firstname, lastname, login, password, role);
         this.pesel = pesel;
-    }
+    }*/
 
     public Person(Long id, String firstname, String lastname, String login, String password, String pesel, Role role) {
         super(id, firstname, lastname, login, password, role);
@@ -45,5 +45,9 @@ public class Person extends User{
     }
 
 
+    public Person(String firstname, String lastname, String login, String password, String pesel, Address address, Role role) {
+        super(firstname, lastname, login, password, role, address);
+        this.pesel = pesel;
+    }
 }
 

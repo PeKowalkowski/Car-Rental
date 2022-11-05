@@ -1,5 +1,6 @@
 package com.example.carRental.dtos;
 
+import com.example.carRental.entities.Address;
 import com.example.carRental.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,6 @@ public class CompanyDto {
     private String firstname;
     private String lastname;
     private String password;
+    private Address address;
     private Role role;
 }

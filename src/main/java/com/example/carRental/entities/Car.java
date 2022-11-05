@@ -29,7 +29,7 @@ public class Car {
     private CarBodyType carBodyType;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
 

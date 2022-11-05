@@ -5,13 +5,11 @@ import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.Employee;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.EmployeeRepository;
-import com.example.carRental.servicesImpl.EmployeeService;
+import com.example.carRental.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
