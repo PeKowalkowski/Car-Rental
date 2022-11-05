@@ -1,23 +1,16 @@
-package com.example.carRental.servicesImpl;
+package com.example.carRental.services;
 
-import com.example.carRental.dtos.EmployeeDto;
 import com.example.carRental.dtos.UserDto;
-import com.example.carRental.entities.Employee;
 import com.example.carRental.entities.User;
-import com.example.carRental.enums.Role;
 import com.example.carRental.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,7 +58,7 @@ public class UserService implements UserDetailsService {
         List<UserDto> userDtoList = userRepository.findAll().stream()
                 .map(user -> {
                     UserDto userDto = new UserDto(user.getId(), user.getLogin(), user.getFirstname(),
-                            user.getLastname(), user.getPassword(),user.getRole());
+                            user.getLastname(), user.getPassword(),user.getRole(), user.getAddress());
                     return userDto;
                 })
                 .collect(Collectors.toList());

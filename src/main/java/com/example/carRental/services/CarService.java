@@ -1,9 +1,10 @@
-package com.example.carRental.servicesImpl;
+package com.example.carRental.services;
 
 import com.example.carRental.dtos.CarDto;
 import com.example.carRental.entities.Car;
+/*import com.example.carRental.mappers.CarMapper;*/
+import com.example.carRental.mappers.CarMapperImpl;
 import com.example.carRental.repositories.CarRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,23 +18,18 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    private static ModelMapper modelMapper;
+    @Autowired
+    private CarMapperImpl carMapper;
+
+
+   /* @Autowired
+    private ModelMapper modelMapper;*/
+
 
     public CarDto addCar(CarDto carDto) {
-        Car car = mapperToCar(carDto);
+        Car car = carMapper.mapperDtoToEntity(carDto);
         Car carOut = carRepository.save(car);
-        return mapperCarToCarDto(carOut);
-    }
-
-    private CarDto mapperCarToCarDto(Car car) {
-        CarDto carDto = modelMapper.map(car,CarDto.class);
-        return carDto;
-    }
-
-    private Car mapperToCar(CarDto carDto) {
-        return new Car(carDto.getBrand(), carDto.getModel(), carDto.getYear(),
-                carDto.getColor(), carDto.getMileage(), carDto.getPrice(),carDto.getCarBodyType(),
-                carDto.getStatus(),carDto.getBranch());
+        return carMapper.mapperEntityToDto(carOut);
     }
 
     public List<CarDto> getCars() {

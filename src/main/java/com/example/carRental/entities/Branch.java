@@ -25,14 +25,15 @@ public class Branch {
     private Long id;
     private String name;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "car_rental_id", referencedColumnName = "id")
     private CarRental carRental;
+
     @JsonIgnore
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
     private List<Employee> employeeList;
     @JsonIgnore
-    @OneToMany(mappedBy = "branch", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
     private List<Car> carList;
 
     public Branch(String name) {

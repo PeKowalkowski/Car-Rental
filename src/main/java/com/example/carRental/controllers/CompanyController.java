@@ -1,14 +1,13 @@
 package com.example.carRental.controllers;
 
 import com.example.carRental.dtos.CompanyDto;
-import com.example.carRental.dtos.PersonDto;
 import com.example.carRental.entities.Company;
-import com.example.carRental.entities.Person;
-import com.example.carRental.servicesImpl.CompanyService;
+import com.example.carRental.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.processing.Generated;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,5 +38,10 @@ public class CompanyController {
     public ResponseEntity<Void> updateCompany(@PathVariable Long id, @RequestBody CompanyDto companyDto){
         companyService.updatCompany(id, companyDto);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/companyAddress/{id}")
+    public List<Company> getByAddressId(@PathVariable Long id){
+        return companyService.findByAddressId(id);
     }
 }

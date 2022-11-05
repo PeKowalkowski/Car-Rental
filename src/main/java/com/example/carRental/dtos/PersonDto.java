@@ -1,7 +1,10 @@
 
 package com.example.carRental.dtos;
 
+/*
 import com.example.carRental.entities.Authority;
+*/
+import com.example.carRental.entities.Address;
 import com.example.carRental.entities.Branch;
 import com.example.carRental.enums.Role;
 import lombok.AllArgsConstructor;
@@ -19,13 +22,9 @@ public class PersonDto  {
     private String firstname;
     private String lastname;
     private String password;
-
     private String pesel;
+    private Address address;
     private Role role;
-
-
-
-/*private Authority authority;*/
 
 
 

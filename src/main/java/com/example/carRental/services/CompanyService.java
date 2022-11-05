@@ -1,9 +1,7 @@
-package com.example.carRental.servicesImpl;
+package com.example.carRental.services;
 
 import com.example.carRental.dtos.CompanyDto;
 import com.example.carRental.entities.Company;
-import com.example.carRental.entities.Person;
-import com.example.carRental.entities.User;
 import com.example.carRental.enums.Role;
 import com.example.carRental.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +23,12 @@ public class CompanyService {
 
     public Company signUpCompany(Company company){
         boolean companyExist = companyRepository.findByLogin(company.getLogin()).isPresent();
-
         if(companyExist){
             throw new IllegalStateException("Zajety");
         }
-
         String encodedPassword = bCryptPasswordEncoder.encode(company.getPassword());
-
         company.setPassword(encodedPassword);
-
-
         companyRepository.save(company);
-
         return company;
 
 
@@ -46,7 +38,7 @@ public class CompanyService {
                 .map(company -> {
                     CompanyDto companyDto = new CompanyDto(company.getId(), company.getLogin(), company.getName(),
                             company.getNip(),company.getFirstname(), company.getLastname(), company.getPassword(),
-                            company.getRole());
+                            company.getAddress(), company.getRole());
                     return companyDto;
                 })
                 .collect(Collectors.toList());
@@ -64,8 +56,12 @@ public class CompanyService {
 
     public void updatCompany(Long id, CompanyDto companyDto) {
         Company company = new Company(id, companyDto.getLogin(), companyDto.getName(),  companyDto.getNip(),
-                companyDto.getFirstname(), companyDto.getLastname(), companyDto.getPassword(),
+                companyDto.getFirstname(), companyDto.getLastname(), companyDto.getPassword(),companyDto.getAddress(),
                 Role.valueOf(String.valueOf(companyDto.getRole())));
         companyRepository.save(company);
+    }
+
+    public List<Company> findByAddressId(Long id){
+        return companyRepository.findByAddress_Id(id);
     }
 }

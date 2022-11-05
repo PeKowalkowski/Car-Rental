@@ -28,41 +28,18 @@ public class Employee extends User{
 
     /*@JsonIgnore
     private String password;*/
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
 
-    public Employee(Long id, String firstname, String lastname, String login, String password,  Branch branch, Role role) {
-        super(id, firstname, lastname, login, password, role);
-        this.branch = branch;
+    public Employee(String firstname, String lastname, String login, String password, Address address, Role role) {
+        super(firstname, lastname, login, password, role, address);
+
     }
 
-    public Employee(String firstname, String lastname, String login, String password, Branch branch, Role role) {
-        super(firstname, lastname, login, password, role);
+
+    public Employee(Long id, String firstname, String lastname, String login, String password, Branch branch, Address address, Role role) {
+        super(id, firstname, lastname, login, password, role, address);
         this.branch = branch;
     }
-
-    public Employee(String firstname, String lastname, String login, String password, Role role) {
-        super(firstname, lastname, login, password, role);
-    }
-
-    /* public Employee(String login, String firstname, String lastname, Authority authority, String password, Branch branch) {
-        this.login = login;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.authority = authority;
-        this.password = password;
-        this.branch = branch;
-    }*/
-
-    /*public Employee(Long id, String login, String firstname, String lastname, Authority authority, Branch branch) {
-        this.id = id;
-        this.login = login;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.authority = authority;
-        this.branch = branch;
-    }*/
-
-
 }

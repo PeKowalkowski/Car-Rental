@@ -35,4 +35,18 @@ public class Company extends User{
         this.name = name;
         this.nip = nip;
     }
+
+
+    public Company(String login,String name, String nip, String firstname, String lastname, String password,
+                   Address address,  Role role) {
+        super(firstname, lastname, login, password, role, address);
+        this.name = name;
+        this.nip = nip;
+    }
+
+    public Company( Long id,String login, String name,String nip, String firstname, String lastname, String password,Address address, Role role  ) {
+        super(id, firstname, lastname, login, password, role, address);
+        this.name = name;
+        this.nip = nip;
+    }
 }

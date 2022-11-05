@@ -1,4 +1,4 @@
-package com.example.carRental.servicesImpl;
+package com.example.carRental.services;
 
 import com.example.carRental.dtos.CompanyDto;
 import com.example.carRental.dtos.EmployeeDto;
@@ -61,6 +61,7 @@ public class RegistrationService {
                         personDto.getLogin(),
                         personDto.getPassword(),
                         personDto.getPesel(),
+                        personDto.getAddress(),
                         Role.USER
                 )
         );
@@ -75,6 +76,7 @@ public class RegistrationService {
                     employeeDto.getLastname(),
                     employeeDto.getLogin(),
                     employeeDto.getPassword(),
+                    employeeDto.getAddress(),
                     Role.USER
             )
         );
@@ -91,6 +93,7 @@ public class RegistrationService {
                         companyDto.getFirstname(),
                         companyDto.getLastname(),
                         companyDto.getPassword(),
+                        companyDto.getAddress(),
                         Role.USER
                 )
         );

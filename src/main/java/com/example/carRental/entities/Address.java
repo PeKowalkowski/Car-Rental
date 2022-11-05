@@ -21,11 +21,5 @@ public class Address {
     private String zipCode;
     private String Country;
 
-    public Address(String city, String street, String zipCode, String country) {
-        this.city = city;
-        this.street = street;
-        this.zipCode = zipCode;
-        Country = country;
-    }
 
 }
