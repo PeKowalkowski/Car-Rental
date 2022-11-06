@@ -18,12 +18,6 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    /*@PostMapping
-    public ResponseEntity<PersonDto> addEmployee(@RequestBody PersonDto personDto){
-        PersonDto personDto1 = personService.addPerson(personDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(personDto1);
-    }*/
-
     @GetMapping
     public ResponseEntity<List<PersonDto>> getPersons(){
         List<PersonDto> personDtoList = personService.getPersons();

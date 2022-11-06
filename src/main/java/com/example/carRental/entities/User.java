@@ -1,6 +1,7 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.enums.Role;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,11 +19,10 @@ import java.util.List;
 @Entity
 @Table(name = "users2", uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 @Data
-/*@AllArgsConstructor*/
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "dtype")
-@DiscriminatorValue("users2")
+/*@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "dtype")
+@DiscriminatorValue("users2")*/
 public class User implements UserDetails {
 
     @Id
@@ -30,7 +30,9 @@ public class User implements UserDetails {
     private Long id;
     private String firstname;
     private String lastname;
+    @NotNull
     private String login;
+    @NotNull
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
