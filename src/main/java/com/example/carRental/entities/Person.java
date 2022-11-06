@@ -17,27 +17,8 @@ import java.util.List;
 @DiscriminatorValue("persons")
 public class Person extends User{
 
-/*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String login;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private String pesel;
-    @OneToOne
-    @JoinColumn(name = "authority_id")
-    private Authority authority;*/
-
     private String pesel;
 
-
-
-
-   /* public Person(String firstname, String lastname, String login, String password, String pesel, Role role) {
-        super(firstname, lastname, login, password, role);
-        this.pesel = pesel;
-    }*/
 
     public Person(Long id, String firstname, String lastname, String login, String password, String pesel, Role role) {
         super(id, firstname, lastname, login, password, role);
@@ -49,5 +30,7 @@ public class Person extends User{
         super(firstname, lastname, login, password, role, address);
         this.pesel = pesel;
     }
+
+
 }
 

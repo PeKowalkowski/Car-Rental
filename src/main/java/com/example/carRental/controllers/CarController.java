@@ -5,13 +5,12 @@ import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.Car;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRepository;
-import com.example.carRental.servicesImpl.CarService;
+import com.example.carRental.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cars")
+/*@PreAuthorize("hasAuthority('ADMIN')")*/
 public class CarController {
 
     @Autowired
@@ -39,20 +39,24 @@ public class CarController {
     @PostMapping
     public ResponseEntity<CarDto> addCar(@RequestBody CarDto carDto) {
         CarDto carDto1 = carService.addCar(carDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(carDto1);
+        return ResponseEntity.status(HttpStatus .CREATED).body(carDto1);
     }
-
     @GetMapping
+/*
+    @PreAuthorize("hasRole('EMPLOYEE')and hasRole('USER')")
+*/
     public ResponseEntity<List<CarDto>> getCars(){
         List<CarDto> carDtoList = carService.getCars();
         return ResponseEntity.ok(carDtoList);
     }
     @GetMapping("/{id}")
+    /*@PreAuthorize("hasAuthority('ADMIN')")*/
     public ResponseEntity<Optional<Car>> getCarById(@PathVariable Long id){
         Optional<Car> car = carService.getCarById(id);
         return ResponseEntity.ok(car);
     }
     @DeleteMapping("/{id}")
+    /*@PreAuthorize("hasAuthority('ADMIN')")*/
     public ResponseEntity<Void> deleteCarById(@PathVariable Long id){
         carService.deleteCarByid(id);
         return ResponseEntity.noContent().build();

@@ -27,6 +27,14 @@ public class PersonDto  {
     private Role role;
 
 
-
+    public PersonDto(Long id, String login, String firstname, String lastname, String pesel, Address address, Role role) {
+        this.id = id;
+        this.login = login;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.pesel = pesel;
+        this.address = address;
+        this.role = role;
+    }
 }
 

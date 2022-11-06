@@ -56,7 +56,7 @@ public class PersonService implements UserDetailsService {
         List<PersonDto> personDtoList = personRepository.findAll().stream()
                 .map(person -> {
                     PersonDto PersonDto = new PersonDto(person.getId(), person.getLogin(), person.getFirstname(),
-                            person.getLastname(), person.getPassword(),person.getPesel(),person.getAddress(), person.getRole());
+                            person.getLastname(),person.getPesel(),person.getAddress(), person.getRole());
                     return PersonDto;
                 })
                 .collect(Collectors.toList());
