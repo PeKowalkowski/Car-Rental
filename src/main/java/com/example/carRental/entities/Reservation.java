@@ -18,6 +18,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private LocalDateTime reservationDate;
+    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST})
+    private Car car;
     private Double price;
 
     @OneToOne(cascade = CascadeType.ALL)
