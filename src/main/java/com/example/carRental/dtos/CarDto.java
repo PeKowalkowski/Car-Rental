@@ -26,6 +26,6 @@ public class CarDto {
     @Enumerated(EnumType.STRING)
     private CarBodyType carBodyType;
     @Enumerated(EnumType.STRING)
-    private Status status = Status.AVAILABLE;
+    private Status status= Status.AVAILABLE;
     private Branch branch;
 }
