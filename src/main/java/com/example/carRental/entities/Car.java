@@ -28,10 +28,13 @@ public class Car {
     @Enumerated(EnumType.STRING)
     private CarBodyType carBodyType;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.AVAILABLE;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="car_id")
+    private List<Reservation> reservationList;
 
     public Car(String brand, String model, String year,
                String color, String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
