@@ -48,4 +48,17 @@ public class Car {
         this.status = status;
         this.branch = branch;
     }
+
+    public Car(Long id, String brand, String model, String year, String color, String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+        this.mileage = mileage;
+        this.price = price;
+        this.carBodyType = carBodyType;
+        this.status = status;
+        this.branch = branch;
+    }
 }
