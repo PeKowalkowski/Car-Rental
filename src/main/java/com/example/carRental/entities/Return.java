@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -17,8 +18,11 @@ public class Return {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private LocalDateTime rentalDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date returnDate;
     private String comments;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Reservation reservation;
+
+
+
 }

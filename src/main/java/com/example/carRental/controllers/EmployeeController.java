@@ -34,12 +34,6 @@ public class EmployeeController {
         this.branchRepository = branchRepository;
     }
 
-    /*@PostMapping
-    public ResponseEntity<EmployeeDto> addEmployee(@RequestBody EmployeeDto employeeDto){
-        EmployeeDto employeeDto1 = employeeService.addEmployee(employeeDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(employeeDto1);
-    }*/
-
     @GetMapping
     public ResponseEntity<List<EmployeeDto>>getEmployees(){
         List<EmployeeDto> employeeDtoList = employeeService.getEmployees();

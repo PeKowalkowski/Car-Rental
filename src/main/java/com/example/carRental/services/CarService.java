@@ -7,9 +7,11 @@ import com.example.carRental.mappers.CarMapperImpl;
 import com.example.carRental.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,10 +22,6 @@ public class CarService {
 
     @Autowired
     private CarMapperImpl carMapper;
-
-
-   /* @Autowired
-    private ModelMapper modelMapper;*/
 
 
     public CarDto addCar(CarDto carDto) {
@@ -44,10 +42,16 @@ public class CarService {
         return carDtoList;
     }
 
-    public Optional<Car> getCarById(Long id) {
+    public Optional<Car>getCarById(Long id) {
         Optional<Car> car = carRepository.findById(id);
         return car;
     }
+    @Transactional
+    public CarDto getById2(Long id) {
+        Car car = carRepository.getById(id);
+        return carMapper.mapperEntityToDto(car);
+    }
+
 
     public void deleteCarByid(Long id) {
         carRepository.deleteById(id);
@@ -58,4 +62,5 @@ public class CarService {
                 carDto.getPrice(), carDto.getCarBodyType(), carDto.getStatus(), carDto.getBranch());
         carRepository.save(car);
     }
+
 }

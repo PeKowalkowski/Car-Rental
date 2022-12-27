@@ -1,6 +1,7 @@
 
 package com.example.carRental.controllers;
 
+import com.example.carRental.dtos.CarDto;
 import com.example.carRental.dtos.PersonDto;
 import com.example.carRental.entities.Person;
 import com.example.carRental.services.PersonService;

@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/cars")
-/*@PreAuthorize("hasAuthority('ADMIN')")*/
 public class CarController {
 
     @Autowired
@@ -42,21 +41,16 @@ public class CarController {
         return ResponseEntity.status(HttpStatus .CREATED).body(carDto1);
     }
     @GetMapping
-/*
-    @PreAuthorize("hasRole('EMPLOYEE')and hasRole('USER')")
-*/
     public ResponseEntity<List<CarDto>> getCars(){
         List<CarDto> carDtoList = carService.getCars();
         return ResponseEntity.ok(carDtoList);
     }
     @GetMapping("/{id}")
-    /*@PreAuthorize("hasAuthority('ADMIN')")*/
     public ResponseEntity<Optional<Car>> getCarById(@PathVariable Long id){
         Optional<Car> car = carService.getCarById(id);
         return ResponseEntity.ok(car);
     }
     @DeleteMapping("/{id}")
-    /*@PreAuthorize("hasAuthority('ADMIN')")*/
     public ResponseEntity<Void> deleteCarById(@PathVariable Long id){
         carService.deleteCarByid(id);
         return ResponseEntity.noContent().build();

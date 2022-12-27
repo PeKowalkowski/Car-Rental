@@ -23,7 +23,7 @@ public class CarRental {
     private String phoneNumber;
     private String owner;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "carRental", cascade = CascadeType.ALL)
     private List<Branch> branchList;
 

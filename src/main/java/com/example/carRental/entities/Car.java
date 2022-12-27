@@ -2,6 +2,7 @@ package com.example.carRental.entities;
 
 import com.example.carRental.enums.CarBodyType;
 import com.example.carRental.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class Car {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "branch_id", referencedColumnName = "id")
     private Branch branch;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="car_id")
     private List<Reservation> reservationList;
@@ -61,4 +63,7 @@ public class Car {
         this.status = status;
         this.branch = branch;
     }
+
+
+
 }
