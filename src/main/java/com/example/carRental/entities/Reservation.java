@@ -1,6 +1,7 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.dtos.ReservationDto;
+import com.example.carRental.enums.ReservationStatus;
 import com.example.carRental.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,8 +32,6 @@ public class Reservation {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date reservationDate;
-
-
     @ManyToOne()
     private Car car;
     @OneToOne(cascade = CascadeType.ALL)
@@ -44,6 +43,8 @@ public class Reservation {
     @ManyToOne()
     private Person person;
     private String name;
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus reservationStatus = ReservationStatus.ACTIVE;
 
     public Reservation(Date reservationDate, Car car, Rental rental, Return returnCar, String name) {
         this.reservationDate = reservationDate;
@@ -56,6 +57,10 @@ public class Reservation {
     public Reservation( String name,Car car) {
         this.car = car;
         this.name = name;
+    }
+
+    public void setReservationStatus(ReservationStatus reservationStatus) {
+        this.reservationStatus = reservationStatus;
     }
 
     @PrePersist

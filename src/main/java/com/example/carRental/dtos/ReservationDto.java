@@ -1,6 +1,7 @@
 package com.example.carRental.dtos;
 
 import com.example.carRental.entities.*;
+import com.example.carRental.enums.ReservationStatus;
 import com.example.carRental.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -34,17 +35,18 @@ public class ReservationDto {
     /*private Long personId;*/
    /* private Long companyId;*/
     private String name;
+    private ReservationStatus reservationStatus;
 
 
 
 
 
-    public ReservationDto(Long id, Date reservationDate, Rental rental, Return returnCar) {
+    /*public ReservationDto(Long id, Date reservationDate, Rental rental, Return returnCar) {
         this.id = id;
         this.reservationDate = reservationDate;
         this.rental = rental;
         this.returnCar = returnCar;
-    }
+    }*/
 
     public ReservationDto(Long id, Date reservationDate, Long carId, Rental rental, Return returnCar) {
         this.id = id;

@@ -7,6 +7,7 @@ import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.Car;
 import com.example.carRental.entities.Person;
 import com.example.carRental.entities.Reservation;
+import com.example.carRental.enums.ReservationStatus;
 import com.example.carRental.enums.Status;
 import com.example.carRental.mappers.CarMapperImpl;
 /*
@@ -45,7 +46,8 @@ public class ReservationService {
                 .map(reservation -> {
                     ReservationDto reservationDto = new ReservationDto(reservation.getId(), reservation.getReservationDate(),
                             reservation.getCar().getId(), reservation.getRental(),
-                            reservation.getReturnCar(), reservation.getPerson(), reservation.getCompany(), reservation.getName());
+                            reservation.getReturnCar(), reservation.getPerson(), reservation.getCompany(), reservation.getName(),
+                            reservation.getReservationStatus());
                     return reservationDto;
                 })
                 .collect(Collectors.toList());
@@ -56,5 +58,6 @@ public class ReservationService {
         Optional<Reservation> reservation = reservationRepository.findById(id);
         return reservation;
     }
+
 
 }
