@@ -2,6 +2,7 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,10 +15,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@DiscriminatorValue("persons")
 public class Person extends User{
 
     private String pesel;
+
 
 
     public Person(Long id, String firstname, String lastname, String login, String password, String pesel, Role role) {

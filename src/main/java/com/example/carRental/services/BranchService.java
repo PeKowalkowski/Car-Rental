@@ -33,7 +33,8 @@ public class BranchService {
     public List<BranchDto> getBranches() {
         List<BranchDto> branchDtoList = branchRepository.findAll()
                 .stream().map(branch -> {
-                    BranchDto branchDto = new BranchDto(branch.getId(), branch.getName(), branch.getCarRental());
+                    BranchDto branchDto = new BranchDto(branch.getId(), branch.getName(), branch.getBranchAddress(),
+                            branch.getCarRental());
                     return branchDto;
                 })
                 .collect(Collectors.toList());
@@ -51,7 +52,7 @@ public class BranchService {
     }
 
     public void updateBranchById(Long id, BranchDto branchDto) {
-        Branch branch = new Branch(id, branchDto.getName());
+        Branch branch = new Branch(id, branchDto.getName(), branchDto.getBranchAddress());
         branchRepository.save(branch);
     }
 

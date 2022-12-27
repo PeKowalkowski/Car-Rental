@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,4 +29,19 @@ public class CarDto {
     @Enumerated(EnumType.STRING)
     private Status status= Status.AVAILABLE;
     private Branch branch;
+    private List<ReservationDto> reservationListDto = new ArrayList<>();
+
+    public CarDto(Long id, String brand, String model, String year, String color,
+                  String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+        this.mileage = mileage;
+        this.price = price;
+        this.carBodyType = carBodyType;
+        this.status = status;
+        this.branch = branch;
+    }
 }

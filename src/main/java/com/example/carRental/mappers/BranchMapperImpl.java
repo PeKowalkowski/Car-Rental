@@ -21,6 +21,6 @@ public class BranchMapperImpl implements Mapper<Branch, BranchDto> {
 
     @Override
     public Branch mapperDtoToEntity(BranchDto branchDto) {
-        return new Branch(branchDto.getName());
+        return new Branch(branchDto.getName(), branchDto.getBranchAddress());
     }
 }

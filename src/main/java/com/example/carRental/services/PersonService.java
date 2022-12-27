@@ -1,6 +1,8 @@
 package com.example.carRental.services;
 
+import com.example.carRental.dtos.CarDto;
 import com.example.carRental.dtos.PersonDto;
+import com.example.carRental.entities.Car;
 import com.example.carRental.entities.Person;
 import com.example.carRental.enums.Role;
 import com.example.carRental.repositories.PersonRepository;
@@ -25,7 +27,7 @@ public class PersonService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private static ModelMapper modelMapper;
+
 
 
     @Override
@@ -77,6 +79,8 @@ public class PersonService implements UserDetailsService {
                     personDto.getPassword(), personDto.getPesel(),Role.valueOf(String.valueOf(personDto.getRole())));
             personRepository.save(person);
         }
+
+
 
 
 }
