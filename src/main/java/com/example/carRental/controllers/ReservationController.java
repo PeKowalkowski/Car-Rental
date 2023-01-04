@@ -93,14 +93,13 @@ public class ReservationController {
 
     @PutMapping("/{reservationId}/{carId}")
     ResponseEntity<Reservation> closeReservation(@PathVariable(value = "carId") Long carId,
-                                          @PathVariable(value = "reservationId") Long reservationId,
-                                            @RequestBody Reservation reservation){
+                                          @PathVariable(value = "reservationId") Long reservationId){
         Car car = carRepository.findById(carId).get();
         car.setStatus(Status.AVAILABLE);
         Reservation reservation1 = reservationRepository.findById(reservationId).get();
         reservation1.setReservationStatus(ReservationStatus.NOACTIVE);
-        reservationRepository.save(reservation);
-        return ResponseEntity.ok(reservation);
+        reservationRepository.save(reservation1);
+        return ResponseEntity.ok(reservation1);
     }
 
 
