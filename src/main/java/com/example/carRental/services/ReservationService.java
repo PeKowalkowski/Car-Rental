@@ -32,13 +32,6 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
-    /*
-        @Autowired
-        private ReservationMapperImpl reservationMapper;*/
-    @Autowired
-    private CarRepository carRepository;
-    @Autowired
-    private CarMapperImpl carMapper;
 
 
     public List<ReservationDto> getReservations() {

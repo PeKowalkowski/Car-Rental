@@ -24,7 +24,8 @@ public class Branch {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "branch")
+
+    @OneToOne(cascade = CascadeType.ALL)
     private BranchAddress branchAddress;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

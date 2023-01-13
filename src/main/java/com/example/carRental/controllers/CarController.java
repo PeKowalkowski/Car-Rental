@@ -3,14 +3,13 @@ package com.example.carRental.controllers;
 import com.example.carRental.dtos.CarDto;
 import com.example.carRental.entities.Branch;
 import com.example.carRental.entities.Car;
+import com.example.carRental.enums.Status;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRepository;
 import com.example.carRental.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +49,7 @@ public class CarController {
         Optional<Car> car = carService.getCarById(id);
         return ResponseEntity.ok(car);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCarById(@PathVariable Long id){
         carService.deleteCarByid(id);

@@ -17,7 +17,7 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String opinion;
+    private String commentsToRental;
     private Double surcharge;
 
 }

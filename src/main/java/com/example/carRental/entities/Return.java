@@ -21,7 +21,7 @@ public class Return {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date returnDate;
-    private String comments;
+    private String opinions;
 
 
 
