@@ -1,9 +1,5 @@
 
 package com.example.carRental.dtos;
-
-/*
-import com.example.carRental.entities.Authority;
-*/
 import com.example.carRental.entities.Address;
 import com.example.carRental.enums.Role;
 import lombok.AllArgsConstructor;

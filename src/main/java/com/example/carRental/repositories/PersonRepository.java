@@ -1,7 +1,6 @@
 
 package com.example.carRental.repositories;
 
-import com.example.carRental.entities.Employee;
 import com.example.carRental.entities.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

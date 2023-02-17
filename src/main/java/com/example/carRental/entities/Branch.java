@@ -1,17 +1,12 @@
 package com.example.carRental.entities;
 
-import com.example.carRental.dtos.CarDto;
-import com.example.carRental.dtos.EmployeeDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "branches")

@@ -3,14 +3,17 @@ package com.example.carRental.mappers;
 import com.example.carRental.dtos.CarRentalDto;
 import com.example.carRental.entities.CarRental;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CarRentalMapperImpl implements Mapper<CarRental, CarRentalDto> {
 
-    @Autowired
+
     private ModelMapper modelMapper;
+
+    public CarRentalMapperImpl(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public CarRentalDto mapperEntityToDto(CarRental carRental) {
@@ -23,4 +26,6 @@ public class CarRentalMapperImpl implements Mapper<CarRental, CarRentalDto> {
         return new CarRental(carRentalDto.getName(), carRentalDto.getWebsite(), carRentalDto.getPhoneNumber(),
                 carRentalDto.getOwner(), carRentalDto.getBranchList());
     }
+
+
 }

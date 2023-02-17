@@ -2,13 +2,13 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.enums.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "persons", uniqueConstraints = @UniqueConstraint(columnNames = "pesel"))

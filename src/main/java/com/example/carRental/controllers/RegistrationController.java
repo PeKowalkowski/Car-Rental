@@ -2,9 +2,6 @@ package com.example.carRental.controllers;
 
 import com.example.carRental.dtos.CompanyDto;
 import com.example.carRental.dtos.EmployeeDto;
-/*
-import com.example.carRental.dtos.PersonDto;
-*/
 import com.example.carRental.dtos.PersonDto;
 import com.example.carRental.dtos.UserDto;
 import com.example.carRental.entities.Company;
@@ -23,16 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/registration")
 public class RegistrationController {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    private EmployeeRepository employeeRepository;
-
-
-    @Autowired
     private RegistrationService registrationService;
 
+    public RegistrationController(RegistrationService registrationService) {
+        this.registrationService = registrationService;
+    }
 
     @PostMapping
     public String register(@RequestBody UserDto userDto){

@@ -38,6 +38,7 @@ public class Car {
     @JoinColumn(name="car_id")
     private List<Reservation> reservationList;
 
+
     public Car(String brand, String model, String year,
                String color, String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
         this.brand = brand;
@@ -51,7 +52,8 @@ public class Car {
         this.branch = branch;
     }
 
-    public Car(Long id, String brand, String model, String year, String color, String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
+    public Car(Long id, String brand, String model, String year, String color,
+               String mileage, Long price, CarBodyType carBodyType, Status status, Branch branch) {
         this.id = id;
         this.brand = brand;
         this.model = model;

@@ -19,18 +19,8 @@ public class CarRentalController {
 
     private CarRentalService carRentalService;
 
-    private BranchService branchServiceImpl;
-
-    private CarRentalRepository carRentalRepository;
-
-    private BranchRepository branchRepository;
-
-    public CarRentalController(CarRentalService carRentalService, BranchService branchServiceImpl, CarRentalRepository carRentalRepository, BranchRepository branchRepository) {
+    public CarRentalController(CarRentalService carRentalService) {
         this.carRentalService = carRentalService;
-
-        this.branchServiceImpl = branchServiceImpl;
-        this.carRentalRepository = carRentalRepository;
-        this.branchRepository = branchRepository;
     }
 
     @PostMapping
@@ -39,32 +29,30 @@ public class CarRentalController {
         return ResponseEntity.status(HttpStatus.CREATED).body(carRentalDto1);
     }
 
-
-
-
     @GetMapping
-    ResponseEntity<List<CarRentalDto>> getCarRentals(){
+    ResponseEntity<List<CarRentalDto>> getCarRentals() {
         List<CarRentalDto> carRentalDtoList = carRentalService.getCarRentals();
         return ResponseEntity.ok(carRentalDtoList);
-        /*return ResponseEntity.ok(carRentalServiceImpl.getCarRentals());*/
     }
-    @GetMapping("/{id}")
-    ResponseEntity<Optional<CarRental>> findById(@PathVariable Long id){
-    Optional<CarRental> carRental = carRentalService.findById(id);
 
-    return ResponseEntity.ok(carRental);
+    @GetMapping("/{id}")
+    ResponseEntity<Optional<CarRental>> findById(@PathVariable Long id) {
+        Optional<CarRental> carRental = carRentalService.findById(id);
+
+        return ResponseEntity.ok(carRental);
     }
 
 
     @DeleteMapping("/{id}")
-    ResponseEntity<Void> deleteCarRentalById(@PathVariable Long id){
+    ResponseEntity<Void> deleteCarRentalById(@PathVariable Long id) {
         carRentalService.deleteCarRental(id);
         return ResponseEntity.noContent().build();
     }
+
     @PutMapping("/{id}")
-    ResponseEntity<Void> updateCarRentalById(@PathVariable Long id, @RequestBody CarRentalDto carRentalDto){
-    carRentalService.updateCarRentalById(id, carRentalDto);
-    return ResponseEntity.noContent().build();
+    ResponseEntity<Void> updateCarRentalById(@PathVariable Long id, @RequestBody CarRentalDto carRentalDto) {
+        carRentalService.updateCarRentalById(id, carRentalDto);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -2,20 +2,18 @@
 package com.example.carRental.mappers;
 
 import com.example.carRental.dtos.CarDto;
-import com.example.carRental.dtos.ReservationDto;
 import com.example.carRental.entities.Car;
-import com.example.carRental.entities.Reservation;
-import com.example.carRental.services.ReservationService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CarMapperImpl implements Mapper<Car, CarDto> {
 
-    @Autowired
     private ModelMapper modelMapper;
 
+    public CarMapperImpl(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public CarDto mapperEntityToDto(Car car) {

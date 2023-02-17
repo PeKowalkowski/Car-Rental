@@ -1,12 +1,15 @@
 package com.example.carRental.controllers;
 
 import com.example.carRental.dtos.ReservationDto;
-import com.example.carRental.entities.*;
+import com.example.carRental.entities.Car;
+import com.example.carRental.entities.Reservation;
 import com.example.carRental.enums.ReservationStatus;
 import com.example.carRental.enums.Status;
-import com.example.carRental.repositories.*;
+import com.example.carRental.repositories.CarRepository;
+import com.example.carRental.repositories.CompanyRepository;
+import com.example.carRental.repositories.PersonRepository;
+import com.example.carRental.repositories.ReservationRepository;
 import com.example.carRental.services.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,22 +21,25 @@ import java.util.Optional;
 @RequestMapping("/api/reservations")
 public class ReservationController {
 
-    @Autowired
+
     private ReservationService reservationService;
 
-    @Autowired
     private CarRepository carRepository;
-    @Autowired
+
     private PersonRepository personRepository;
 
-    @Autowired
     private ReservationRepository reservationRepository;
 
-    @Autowired
     private CompanyRepository companyRepository;
 
-
-
+    public ReservationController(ReservationService reservationService, CarRepository carRepository, PersonRepository personRepository,
+                                 ReservationRepository reservationRepository, CompanyRepository companyRepository) {
+        this.reservationService = reservationService;
+        this.carRepository = carRepository;
+        this.personRepository = personRepository;
+        this.reservationRepository = reservationRepository;
+        this.companyRepository = companyRepository;
+    }
 
     @PostMapping("/{carId}/{personId}/personReservations")
     public ResponseEntity<Reservation> addPersonReservation(@PathVariable(value = "carId") Long carId,
@@ -46,7 +52,7 @@ public class ReservationController {
             Reservation reservation = personRepository.findById(personId).map(person -> {
                 reservationRequest.setPerson(person);
                 reservationRequest.setCar(car);
-                reservationRequest.setName("Rezerwacja użytkownika PESEL : " + person.getPesel());
+                reservationRequest.setName("Reservation user with PESEL : " + person.getPesel());
                 car.setStatus(Status.NOAVAILABLE);
 
                 return reservationRepository.save(reservationRequest);
@@ -68,7 +74,7 @@ public class ReservationController {
             Reservation reservation = companyRepository.findById(comapnyId).map(company -> {
                 reservationRequest.setCompany(company);
                 reservationRequest.setCar(car);
-                reservationRequest.setName("Rezerwacja użytkownika NIP : " + company.getNip());
+                reservationRequest.setName("Reservation user with NIP : " + company.getNip());
                 car.setStatus(Status.NOAVAILABLE);
 
                 return reservationRepository.save(reservationRequest);
