@@ -2,6 +2,7 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.enums.Role;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 @AllArgsConstructor
 public class Person extends User{
 
+    @NotNull
     private String pesel;
 
 

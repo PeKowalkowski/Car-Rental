@@ -3,6 +3,7 @@ package com.example.carRental.entities;
 import com.example.carRental.enums.CarBodyType;
 import com.example.carRental.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,14 +21,22 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String brand;
+    @NotNull
     private String model;
+    @NotNull
     private String year;
+    @NotNull
     private String color;
+    @NotNull
     private String mileage;
+    @NotNull
     private Long price;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private CarBodyType carBodyType;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Status status = Status.AVAILABLE;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

@@ -1,5 +1,6 @@
 package com.example.carRental.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String commentsToRental;
+    @NotNull
     private Double surcharge;
 
 }

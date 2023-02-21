@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/registration")
 public class RegistrationController {
@@ -32,7 +34,7 @@ public class RegistrationController {
 
     }
     @PostMapping("/registerPerson")
-    public Person registerPerson(@RequestBody PersonDto personDto){
+    public Person registerPerson(@RequestBody @Valid PersonDto personDto){
         return registrationService.registerPerson(personDto);
     }
 

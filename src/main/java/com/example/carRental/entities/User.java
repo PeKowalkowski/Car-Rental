@@ -1,7 +1,7 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.enums.Role;
-import com.sun.istack.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,6 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -22,14 +24,18 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String firstname;
+    @NotNull
     private String lastname;
     @NotNull
     private String login;
     @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9]{5}]")
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
