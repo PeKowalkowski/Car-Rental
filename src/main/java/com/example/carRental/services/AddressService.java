@@ -14,8 +14,12 @@ import java.util.stream.Collectors;
 @Service
 public class AddressService {
 
-    @Autowired
+
     private AddressRepository addressRepository;
+
+    public AddressService(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
 
     public List<AddressDto> getAddresses() {
         List<AddressDto> addressDtoList = addressRepository.findAll()

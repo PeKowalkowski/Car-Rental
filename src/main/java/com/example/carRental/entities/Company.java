@@ -1,12 +1,14 @@
 package com.example.carRental.entities;
 
 import com.example.carRental.enums.Role;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Tables;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "companies", uniqueConstraints = @UniqueConstraint(columnNames = "nip"))
@@ -15,23 +17,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Company extends User{
 
-
+    @NotNull
     private String name;
+    @NotNull
     private String nip;
-
-
-    public Company(Long id,String login,String name, String nip, String firstname, String lastname,  String password, Role role ) {
-        super(id, firstname, lastname, login, password, role);
-        this.name = name;
-        this.nip = nip;
-    }
-
-    public Company(String login, String name, String nip, String firstname, String lastname,  String password, Role role ) {
-        super(firstname, lastname, login, password, role);
-        this.name = name;
-        this.nip = nip;
-    }
-
 
     public Company(String login,String name, String nip, String firstname, String lastname, String password,
                    Address address,  Role role) {
@@ -40,7 +29,8 @@ public class Company extends User{
         this.nip = nip;
     }
 
-    public Company( Long id,String login, String name,String nip, String firstname, String lastname, String password,Address address, Role role  ) {
+    public Company( Long id,String login, String name,String nip, String firstname, String lastname,
+                    String password,Address address, Role role  ) {
         super(id, firstname, lastname, login, password, role, address);
         this.name = name;
         this.nip = nip;

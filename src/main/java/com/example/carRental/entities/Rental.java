@@ -1,11 +1,11 @@
 package com.example.carRental.entities;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -18,6 +18,7 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String commentsToRental;
+    @NotNull
     private Double surcharge;
 
 }

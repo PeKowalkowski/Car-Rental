@@ -4,11 +4,6 @@ import com.example.carRental.dtos.EmployeeDto;
 import com.example.carRental.entities.Employee;
 import com.example.carRental.enums.Role;
 import com.example.carRental.repositories.EmployeeRepository;
-/*
-import com.example.carRental.services.UserService;
-*/
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +15,21 @@ import java.util.stream.Collectors;
 public class EmployeeService{
 
 
-    @Autowired
+
     private EmployeeRepository employeeRepository;
 
-    @Autowired
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public EmployeeService(EmployeeRepository employeeRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.employeeRepository = employeeRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public Employee signUpEmployee(Employee employee){
         boolean employeeExist = employeeRepository.findByLogin(employee.getLogin()).isPresent();
         if(employeeExist){
-            throw new IllegalStateException("Zajęty");
+            throw new IllegalStateException("inaccessible");
         }
         String encodedPassword = bCryptPasswordEncoder.encode(employee.getPassword());
         employee.setPassword(encodedPassword);

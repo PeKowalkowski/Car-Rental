@@ -15,11 +15,16 @@ import java.util.stream.Collectors;
 @Service
 public class CompanyService {
 
-    @Autowired
+
     private CompanyRepository companyRepository;
 
-    @Autowired
+
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public CompanyService(CompanyRepository companyRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.companyRepository = companyRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public Company signUpCompany(Company company){
         boolean companyExist = companyRepository.findByLogin(company.getLogin()).isPresent();

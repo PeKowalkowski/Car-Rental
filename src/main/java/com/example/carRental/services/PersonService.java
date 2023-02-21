@@ -1,13 +1,9 @@
 package com.example.carRental.services;
 
-import com.example.carRental.dtos.CarDto;
 import com.example.carRental.dtos.PersonDto;
-import com.example.carRental.entities.Car;
 import com.example.carRental.entities.Person;
 import com.example.carRental.enums.Role;
 import com.example.carRental.repositories.PersonRepository;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,14 +17,15 @@ import java.util.stream.Collectors;
 @Service
 public class PersonService implements UserDetailsService {
 
-    @Autowired
+
     private PersonRepository personRepository;
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
-
+    public PersonService(PersonRepository personRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.personRepository = personRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {

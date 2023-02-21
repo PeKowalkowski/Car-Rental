@@ -2,42 +2,35 @@ package com.example.carRental.services;
 
 import com.example.carRental.dtos.CompanyDto;
 import com.example.carRental.dtos.EmployeeDto;
-/*
-import com.example.carRental.dtos.PersonDto;
-*/
 import com.example.carRental.dtos.PersonDto;
 import com.example.carRental.dtos.UserDto;
 import com.example.carRental.entities.Company;
 import com.example.carRental.entities.Employee;
-/*import com.example.carRental.entities.Person;*/
 import com.example.carRental.entities.Person;
 import com.example.carRental.entities.User;
 import com.example.carRental.enums.Role;
-import com.example.carRental.repositories.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RegistrationService {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private PersonService personService;
 
-    @Autowired
     private EmployeeService employeeService;
 
-
-    @Autowired
     private CompanyService companyService;
+
+    public RegistrationService(UserService userService, PersonService personService,
+                               EmployeeService employeeService, CompanyService companyService) {
+        this.userService = userService;
+        this.personService = personService;
+        this.employeeService = employeeService;
+        this.companyService = companyService;
+    }
+
     public String register(UserDto userDto){
 
         String user = userService.signUpUser(

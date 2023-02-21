@@ -17,13 +17,10 @@ import java.util.Optional;
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
-    @Autowired
     private EmployeeService employeeService;
 
-    @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Autowired
     private BranchRepository branchRepository;
 
 

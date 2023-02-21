@@ -1,6 +1,7 @@
 package com.example.carRental.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,9 +19,13 @@ public class CarRental {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String website;
+    @NotNull
     private String phoneNumber;
+    @NotNull
     private String owner;
 
     @JsonIgnore

@@ -6,7 +6,6 @@ import com.example.carRental.entities.CarRental;
 import com.example.carRental.repositories.BranchRepository;
 import com.example.carRental.repositories.CarRentalRepository;
 import com.example.carRental.services.BranchService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +18,13 @@ import java.util.Optional;
 public class BranchController {
 
 
-    @Autowired
+
     private BranchService branchService;
 
-    @Autowired
+
     private CarRentalRepository carRentalRepository;
 
-    @Autowired
+
     private BranchRepository branchRepository;
 
     public BranchController(BranchService branchService, CarRentalRepository carRentalRepository,
@@ -46,6 +45,7 @@ public class BranchController {
         List<BranchDto> branchDtoList = branchService.getBranches();
         return ResponseEntity.ok(branchDtoList);
     }
+
     @GetMapping("/{id}")
     ResponseEntity<Optional<Branch>> getById(@PathVariable Long id){
         Optional<Branch> branch = branchService.findById(id);

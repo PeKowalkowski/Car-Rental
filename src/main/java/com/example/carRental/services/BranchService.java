@@ -15,13 +15,15 @@ import java.util.stream.Collectors;
 @Service
 public class BranchService {
 
-    @Autowired
     private BranchRepository branchRepository;
 
-    @Autowired
     private BranchMapperImpl branchMapper;
 
 
+    public BranchService(BranchRepository branchRepository, BranchMapperImpl branchMapper) {
+        this.branchRepository = branchRepository;
+        this.branchMapper = branchMapper;
+    }
 
     public BranchDto addBranch(BranchDto branchDto) {
         Branch branch = branchMapper.mapperDtoToEntity(branchDto);

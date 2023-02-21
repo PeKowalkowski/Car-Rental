@@ -4,7 +4,6 @@ import com.example.carRental.dtos.CarRentalDto;
 import com.example.carRental.entities.CarRental;
 import com.example.carRental.mappers.CarRentalMapperImpl;
 import com.example.carRental.repositories.CarRentalRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +14,16 @@ import java.util.stream.Collectors;
 @Service
 public class CarRentalService {
 
-    @Autowired
+
     private CarRentalRepository carRentalRepository;
 
-    @Autowired
+
     private CarRentalMapperImpl carRentalMapper;
 
-
+    public CarRentalService(CarRentalRepository carRentalRepository, CarRentalMapperImpl carRentalMapper) {
+        this.carRentalRepository = carRentalRepository;
+        this.carRentalMapper = carRentalMapper;
+    }
 
     public CarRentalDto addCarRental(CarRentalDto carRentalDto) {
         CarRental carRental = carRentalMapper.mapperDtoToEntity(carRentalDto);
